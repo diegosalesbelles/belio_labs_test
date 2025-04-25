@@ -27,3 +27,14 @@ exports.saveGameData = async (req, res) => {
         res.status(500).json({ message: 'Error saving game data', error });
     }
 };
+
+//Get the result history
+exports.getGameHistory = async (req, res) => {
+    try {
+        const gameHistory = await Save.find().sort({ gameDate: -1}); //newest first
+        res.status(200).json(gameHistory);
+    } catch (error) {
+        console.error('Error fetching results history', error);
+        res.status(500).json({message: 'Error fetching results history', error});
+    }
+}

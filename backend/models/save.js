@@ -13,4 +13,7 @@ const saveSchema = new mongoose.Schema({
   timeTaken: { type: Number, required: true },
 });
 
+// Exclude `__v` by default when converting to JSON
+saveSchema.set('toJSON', { versionKey: false });
+
 module.exports = mongoose.model('Save', saveSchema);
